@@ -40,7 +40,7 @@ class Nearby {
         for (int i = 1; i<= range; i++) {
 
             try {
-                subMulti[subIndex++] = multi[x][y+i];
+                subMulti[subIndex] = multi[x][y+i];
                 subIndex++;
             } catch (IndexOutOfBoundsException e) {}
         }
@@ -57,7 +57,7 @@ class Nearby {
             else return range + x - y - 1;
         }
         else {
-            if (y + range < x) return range + y - 1;
+            if (y + range < x) return range + y;
             else return x - 1;
         }
     }
@@ -70,7 +70,7 @@ class Nearby {
     public static void main(String[] args) {
 
         Nearby n = new Nearby();
-        int[] multiMulti = n.nearby(2,1,7);
+        int[] multiMulti = n.nearby(1,2,1);
 
         for (int i: multiMulti) {
             System.out.println(i);
