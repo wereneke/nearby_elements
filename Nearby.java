@@ -34,46 +34,31 @@ class Nearby {
             try {
                 subMulti[subIndex] = multi[x][y+i];
                 subIndex++;
-
             } catch (IndexOutOfBoundsException e) {}
         }
 
         for (int i = 1; i<= range; i++) {
 
             try {
-                subMulti[subIndex] = multi[x][y+i];
+                subMulti[subIndex++] = multi[x][y+i];
                 subIndex++;
-
             } catch (IndexOutOfBoundsException e) {}
         }
 
         return subMulti;
     }
 
-//    private int fill(int internalInex, int lowerBound, int upperBound, int[] array, int x, int y) {
-//
-//        for (int i = lowerBound; i<= upperBound; i++) {
-//
-//            try {
-//                array[internalInex] = multi[x][y+i];
-//                internalInex++;
-//
-//            } catch (IndexOutOfBoundsException e) {}
-//        }
-//        return internalInex;
-//    }
-
     private int countSubSize(int x, int y, int range) {
 
         x = multi[x].length;
 
         if (0 <= y - range) {
-            if (y + range <= x) return 2*range;
-            else return range + x - y;
+            if (y + range < x) return 2*range;
+            else return range + x - y - 1;
         }
         else {
-            if (y + range <= x) return range + x - y;
-            else return x;
+            if (y + range < x) return range + y - 1;
+            else return x - 1;
         }
     }
 
@@ -84,5 +69,11 @@ class Nearby {
 
     public static void main(String[] args) {
 
+        Nearby n = new Nearby();
+        int[] multiMulti = n.nearby(2,1,7);
+
+        for (int i: multiMulti) {
+            System.out.println(i);
+        }
     }
 }
